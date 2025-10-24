@@ -1,8 +1,8 @@
-White Space
+White Space:
 This is a website about an art gallery specialising in children's paintings.
 
 Getting started
-These instructions will help you set up the project on your local machine for development and testing purposes. See the 'Deployment' section for notes on deploying the project on a live system.
+- These instructions will help you set up the project on your local machine for development and testing purposes. See the 'Deployment' section for notes on deploying the project on a live system.
 
 Prerequisites
 Software requirements: minimum requirements.
