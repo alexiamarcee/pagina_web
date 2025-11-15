@@ -1,31 +1,36 @@
 <!DOCTYPE html>
 <html lang="en">
 <!-- Inspirado en: https://dribbble.com/shots/26677818-Kravebeauty-Social-Media-Design -->
- 
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>WHITE SPACE | ART GALLERY</title>
+    <title>White Space</title>
 
     <link rel="stylesheet" href="css/style.css">
-
 </head>
 
 <body>
-    <header>
-        <img src="img/header.jpg" alt="WHITE SPACE">
-        <h1>WHITE SPACE</h1>
-        <nav>
-            <a href="#history">History</a>
-            <a href="#gallery">Gallery</a>
-            <a href="#schedule">Schedule</a>
-            <a href="#location">Location</a>
+    <section class="hero-section">
+        <img src="img/para.jpg" id="background-image">
+        <h2 id="hero-title">White Space</h2>
+    </section>
+
+    <header class="main-header">
+        <img src="img/logo.png" alt="logo" class="header-logo">
+        <h1 class="site-title">White Space</h1>
+        <nav class="main-nav">
+            <a href="#history-section">History</a>
+            <a href="#gallery-section">Gallery</a>
+            <a href="#schedule-section">Schedule</a>
+            <a href="#location-section">Location</a>
+            <a href="#tickets-section">Tickets</a>
         </nav>
     </header>
 
     <main>
-        <section id="history" class="history">
-            <h2>Our history</h2>
+        <section id="history-section" class="history-section">
+            <h2 class="section-title">Our history</h2>
             <p>White Space is the world's first art museum dedicated entirely to the boundless creativity of children.
                 We believe that true genius lies in the crayons and markers of young artists.</p>
             <p>Our collection showcases vibrant, emotional and powerful pieces created by artists aged 4 to 13. Step
@@ -34,120 +39,133 @@
                 eyes of a child again.</p>
         </section>
 
-        <section id="gallery" class="gallery">
-            <section class="painting-1">
-                <h2>Rebirth of the world</h2>
-                <img src="img/1.jpg" alt="P: Rebirth of the world" class="toggle-info">
-                <div class="painting-info">
-                    <p>Made by: Pedro</p>
-                    <p>Age: 11 years old</p>
-                    <p>Technique: Crayon shading</p>
-                    <p>Price: 20€</p>
-                </div>
-            </section>
+        <section id="gallery-section" class="gallery-section">
+            <h2 class="section-title">Gallery</h2>
+            <div class="painting-grid">
+                <article class="painting-item">
+                    <h3 class="painting-title">Rebirth of the world</h3>
+                    <img src="img/1.jpg" alt="Rebirth of the world" class="painting-image toggle-info">
+                    <div class="painting-info">
+                        <p>Made by: Pedro</p>
+                        <p>Age: 11 years old</p>
+                        <p>Technique: crayon shading</p>
+                        <p>Price: 20€</p>
+                    </div>
+                </article>
 
-            <section class="painting-2">
-                <h2>Adam and Eve</h2>
-                <img src="img/2.jpg" alt="P: Adam and Eve" class="toggle-info">
-                <div class="painting-info">
-                    <p>Made by: Susan</p>
-                    <p>Age: 9 years old</p>
-                    <p>Technique: Crayon shading</p>
-                    <p>Price: 10.50€</p>
-                </div>
-            </section>
+                <article class="painting-item">
+                    <h3 class="painting-title">Adam and Eve</h3>
+                    <img src="img/2.jpg" alt="Adam and Eve" class="painting-image toggle-info">
+                    <div class="painting-info">
+                        <p>Made by: Susan</p>
+                        <p>Age: 9 years old</p>
+                        <p>Technique: crayon shading</p>
+                        <p>Price: 10.50€</p>
+                    </div>
+                </article>
 
-            <section class="painting-3">
-                <h2>LGBTQ+ parrot</h2>
-                <img src="img/3.jpg" alt="P: LGBTQ+ parrot" class="toggle-info">
-                <div class="painting-info">
-                    <p>Made by: Juan</p>
-                    <p>Age: 10 years old</p>
-                    <p>Technique: Crayon shading</p>
-                    <p>Price: 23.70€</p>
-                </div>
-            </section>
+                <article class="painting-item">
+                    <h3 class="painting-title">LGBTQ+ parrot</h3>
+                    <img src="img/3.jpg" alt="LGBTQ+ parrot" class="painting-image toggle-info">
+                    <div class="painting-info">
+                        <p>Made by: Juan</p>
+                        <p>Age: 10 years old</p>
+                        <p>Technique: crayon shading</p>
+                        <p>Price: 23.70€</p>
+                    </div>
+                </article>
+                <article class="painting-item">
+                    <h3 class="painting-title">Fishin' 200 years ago</h3>
+                    <img src="img/4.jpg" alt="Fishin' 200 years ago" class="painting-image toggle-info">
+                    <div class="painting-info">
+                        <p>Made by: Samuel</p>
+                        <p>Age: 13 years old</p>
+                        <p>Technique: crayon shading</p>
+                        <p>Price: 5€</p>
+                    </div>
+                </article>
 
-            <section class="painting-4">
-                <h2>Fishin' 200 years ago</h2>
-                <img src="img/4.jpg" alt="P: Fishin' 200 years ago" class="toggle-info">
-                <div class="painting-info">
-                    <p>Made by: Samuel</p>
-                    <p>Age: 13 years old</p>
-                    <p>Technique: Crayon shading</p>
-                    <p>Price: 5€</p>
-                </div>
-            </section>
+                <article class="painting-item">
+                    <h3 class="painting-title">Expensive garbage</h3>
+                    <img src="img/5.jpg" alt="Expensive garbage" class="painting-image toggle-info">
+                    <div class="painting-info">
+                        <p>Made by: anonymous</p>
+                        <p>Age: anonymous</p>
+                        <p>Technique: realism</p>
+                        <p>Price: 1 million</p>
+                    </div>
+                </article>
 
-            <section class="painting-5">
-                <h2>Expensive garbage</h2>
-                <img src="img/5.jpg" alt="P: Expensive garbage" class="toggle-info">
-                <div class="painting-info">
-                    <p>Made by: anonymous</p>
-                    <p>Age: anonymous</p>
-                    <p>Technique: banana</p>
-                    <p>Price: 1 million</p>
-                </div>
-            </section>
+                <article class="painting-item">
+                    <h3 class="painting-title">Banana sad</h3>
+                    <img src="img/6.jpg" alt="Banana sad" class="painting-image toggle-info">
+                    <div class="painting-info">
+                        <p>Made by: Gru</p>
+                        <p>Age: 42 years old</p>
+                        <p>Technique: crayon shading</p>
+                        <p>Price: free</p>
+                    </div>
+                </article>
 
-            <section class="painting-6">
-                <h2>Banana sad</h2>
-                <img src="img/6.jpg" alt="P: Banana sad" class="toggle-info">
-                <div class="painting-info">
-                    <p>Made by: Gru</p>
-                    <p>Age: 42 years old</p>
-                    <p>Technique: Crayon shading</p>
-                    <p>Price: free</p>
-                </div>
-            </section>
+                <article class="painting-item">
+                    <h3 class="painting-title">Pinky</h3>
+                    <img src="img/7.jpg" alt="Pinky" class="painting-image toggle-info">
+                    <div class="painting-info">
+                        <p>Made by: @fanboypink</p>
+                        <p>Age: 22 years old</p>
+                        <p>Technique: marker shading</p>
+                        <p>Price: 10€</p>
+                    </div>
+                </article>
 
-            <section class="painting-7">
-                <h2>Pinky</h2>
-                <img src="img/7.jpg" alt="P: Pinky" class="toggle-info">
-                <div class="painting-info">
-                    <p>Made by: @fanboypink</p>
-                    <p>Age: 22 years old</p>
-                    <p>Technique: Marker shading</p>
-                    <p>Price: 10€</p>
-                </div>
-            </section>
+                <article class="painting-item">
+                    <h3 class="painting-title">Overthinker</h3>
+                    <img src="img/8.jpg" alt="Overthinker" class="painting-image toggle-info">
+                    <div class="painting-info">
+                        <p>Made by: Daniela</p>
+                        <p>Age: 8 years old</p>
+                        <p>Technique: marker shading</p>
+                        <p>Price: 11€</p>
+                    </div>
+                </article>
 
-            <section class="painting-8">
-                <h2>Overthinker</h2>
-                <img src="img/8.jpg" alt="P: Overthinker" class="toggle-info">
-                <div class="painting-info">
-                    <p>Made by: Daniela</p>
-                    <p>Age: 8 years old</p>
-                    <p>Technique: Marker shading</p>
-                    <p>Price: 11€</p>
-                </div>
-            </section>
+                <article class="painting-item">
+                    <h3 class="painting-title">Garden</h3>
+                    <img src="img/9.jpg" alt="Garden" class="painting-image toggle-info">
+                    <div class="painting-info">
+                        <p>Made by: Alicia</p>
+                        <p>Age: 19 years old</p>
+                        <p>Technique: digital art</p>
+                        <p>Price: 150€</p>
+                    </div>
+                </article>
 
-            <section class="painting-9">
-                <h2>Garden</h2>
-                <img src="img/9.jpg" alt="P: Garden" class="toggle-info">
-                <div class="painting-info">
-                    <p>Made by: Alicia</p>
-                    <p>Age: 19 years old</p>
-                    <p>Technique: digital art</p>
-                    <p>Price: 150€</p>
-                </div>
-            </section>
+                <article class="painting-item">
+                    <h3 class="painting-title">Doodle</h3>
+                    <img src="img/10.jpg" alt="Doodle" class="painting-image toggle-info">
+                    <div class="painting-info">
+                        <p>Made by: anonymous</p>
+                        <p>Age: anonymous</p>
+                        <p>Technique: oil on wood</p>
+                        <p>Price: 1€</p>
+                    </div>
+                </article>
 
-            <section class="painting-10">
-                <h2>Doodle</h2>
-                <img src="img/10.jpg" alt="P: Doodle" class="toggle-info">
-                <div class="painting-info">
-                    <p>Made by: anonymous</p>
-                    <p>Age: anonymous</p>
-                    <p>Technique: oil on wood</p>
-                    <p>Price: 1€</p>
-                </div>
-            </section>
+                <article class="painting-item">
+                    <h3 class="painting-title">The Lonely Tree</h3>
+                    <img src="img/11.jpg" alt="The Lonely Tree" class="painting-image toggle-info">
+                    <div class="painting-info">
+                        <p>Made by: Mia</p>
+                        <p>Age: 7 years old</p>
+                        <p>Technique: pencil</p>
+                        <p>Price: 7€</p>
+                    </div>
+                </article>
+            </div>
         </section>
 
-        <section id="schedule" class="schedule">
-            <h2>Schedule</h2>
+        <section id="schedule-section" class="schedule-section">
+            <h2 class="section-title">Schedule</h2>
             <table>
                 <thead>
                     <tr>
@@ -157,31 +175,109 @@
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Monday to Saturday</td>
+                        <td>Monday</td>
                         <td>10:00 - 18:00</td>
                     </tr>
                     <tr>
-                        <td>Sunday</td>
+                        <td>Tuesday</td>
+                        <td>10:00 - 18:00</td>
+                    </tr>
+                    <tr>
+                        <td>Wednesday</td>
                         <td>Closed</td>
+                    </tr>
+                    <tr>
+                        <td>Thursday</td>
+                        <td>10:00 - 18:00</td>
+                    </tr>
+                    <tr>
+                        <td>Friday</td>
+                        <td>10:00 - 18:00</td>
+                    </tr>
+                    <tr>
+                        <td>Saturday</td>
+                        <td>10:00 - 14:00</td>
+                    </tr>
+                    <tr>
+                        <td>Sunday</td>
+                        <td>10:00 - 14:00</td>
                     </tr>
                 </tbody>
             </table>
         </section>
 
-        <section id="location" class="location">
-            <h2>Location</h2>
+        <section id="location-section" class="location-section">
+            <h2 class="section-title">Location</h2>
             <p>Address: Museo Nacional White Space, Parque San Telmo s/n, Las Palmas de Gran Canaria, 35002.</p>
+        </section>
+
+        <section id="style-list-section" class="style-list-section">
+            <h2 class="section-title">Art Styles Catalog</h2>
+            <div id="style-list-container" class="style-list-container">
+                <ul>
+                </ul>
+            </div>
+
+            <h3 class="form-title">Add New Style</h3>
+            <form id="add-style-form" class="add-style-form">
+                <label for="style-name">Style Name:</label>
+                <input type="text" id="style-name" name="style-name">
+
+                <label for="style-amount">Amount:</label>
+                <input type="number" id="style-amount" name="style-amount">
+
+                <input type="submit" value="Add Style" class="submit-button">
+            </form>
+        </section>
+
+        <section id="tickets-section" class="tickets-section">
+            <h2 class="section-title">Tickets</h2>
+            <p class="ticket-price">Price: 20€</p>
+
+            <form id="purchase-form" class="purchase-form">
+                <div class="user-information">
+                    <label for="user-name">Name:</label>
+                    <input type="text" id="user-name" name="user-name">
+                    <span id="error-name-required">* error: name required</spans>
+
+                </div>
+
+                <div class="user-information">
+                    <label for="user-surname">Surname:</label>
+                    <input type="text" id="user-surname" name="user-surname">
+                    <span id="error-surname-required">* error: Surname required</spans>
+                </div>
+
+                <div class="user-information">
+                    <label for="user-age">Age:</label>
+                    <input type="number" id="user-age" name="user-age">
+                    <span id="error-age-required">* error: age required</spans>
+                </div>
+
+                <div class="user-information">
+                    <label for="user-id">ID:</label>
+                    <input type="text" id="user-id" name="user-id">
+                    <span id="error-id-required">* error: ID required</spans>
+                </div>
+
+                <input type="submit" value="Purchase Ticket" class="submit-button">
+            </form>
+
+            <div id="tickets-list-container" class="tickets-list-container">
+                <h3>Purchased Tickets</h3>
+                <ul></ul>
+            </div>
         </section>
     </main>
 
-    <footer>
+    <footer class="main-footer">
         <p>&copy; Copyright 2025. Museo Nacional White Space. Parque San Telmo s/n. Las Palmas de Gran Canaria. 35002.
             Tel +34 691 23 44 66. All rights reserved.</p>
-        <p id="contact">Contact: <a href="mailto:info@whitespace.com">info@whitespace.com</a></p>
+        <p id="contact-info" class="contact-info">Contact: <a href="mailto:info@whitespace.com">info@whitespace.com</a>
+        </p>
     </footer>
 
-    <script src="js/main.js"></script>
-
+    <script src="js/script.js"></script>
 </body>
 
 </html>
