@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', () => {
-    const images = document.querySelectorAll('.toggle-info');
+    const IMAGES = document.querySelectorAll('.toggle-info');
 
-    images.forEach(image => {
+    IMAGES.forEach(image => {
         image.addEventListener('click', () => {
             const item = image.closest('.painting-item');
             if (!item) return;
