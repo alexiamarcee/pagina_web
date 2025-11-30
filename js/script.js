@@ -1,6 +1,17 @@
 document.addEventListener('DOMContentLoaded', () => {
     const IMAGES = document.querySelectorAll('.toggle-info');
+    const ERROR_ID = [
+        "error-name-required",
+        "error-surname-required",
+        "error-age-required",
+        "error-id-required",
+        "error-name-invalid",
+        "error-surname-invalid",
+        "error-age-invalid",
+        "error-id-duplicate"
+    ];
 
+    // Toggle painting info display when image is clicked
     IMAGES.forEach(image => {
         image.addEventListener('click', () => {
             const item = image.closest('.painting-item');
@@ -21,6 +32,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let bg = document.getElementById("background-image");
     let text = document.getElementById("hero-title");
 
+    // Parallax effect on scroll
     window.addEventListener('scroll', function () {
         var value = window.scrollY;
 
@@ -63,7 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
             id: "11223344C",
         }
     ]
-
+   // Attach event listeners to forms
     function listenToEvents() {
         let addStyleForm = document.getElementById("add-style-form");
         let purchaseForm = document.getElementById("purchase-form");
@@ -71,54 +83,86 @@ document.addEventListener('DOMContentLoaded', () => {
         purchaseForm.addEventListener("submit", purchase);
     }
 
+    // Handle ticket purchase
     function purchase(event) {
         event.preventDefault();
 
-        document.getElementById("error-name-required").style.display = "none";
-        document.getElementById("error-surname-required").style.display = "none";
-        document.getElementById("error-age-required").style.display = "none";
-        document.getElementById("error-id-required").style.display = "none";
+        // Hide all error messages
+        ERROR_ID.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = "none";
+        });
 
-        let name = event.target["user-name"].value;
-        let surname = event.target["user-surname"].value;
-        let age = event.target["user-age"].value;
-        let id = event.target["user-id"].value;
+        // Hide success message
+        const successEl = document.getElementById("success-message");
+        if (successEl) successEl.style.display = "none";
 
-        if (!name || name === "") {
-            document.getElementById("error-name-required").style.display = "block";
-            console.log("error-name-required");
-            return;
+        // Get form values
+        let name = event.target["user-name"].value.trim();
+        let surname = event.target["user-surname"].value.trim();
+        let age = event.target["user-age"].value.trim();
+        let id = event.target["user-id"].value.trim();
+
+        // Array to collect errors
+        const errors = [];
+
+        // Validate empty fields
+        if (!name) errors.push("error-name-required");
+        if (!surname) errors.push("error-surname-required");
+        if (!age) errors.push("error-age-required");
+        if (!id) errors.push("error-id-required");
+
+        // Validate name and surname contain only letters
+        const nameRegex = /^[A-Za-zÀ-ÿ\s]+$/;
+        if (name && !nameRegex.test(name)) errors.push("error-name-invalid");
+        if (surname && !nameRegex.test(surname)) errors.push("error-surname-invalid");
+
+        // Validate age is a positive number
+        age = parseInt(age);
+        if (age && (isNaN(age) || age <= 0)) errors.push("error-age-invalid");
+
+        // Validate ID is numeric
+        if (id && !/^\d+$/.test(id)) errors.push("error-id-invalid");
+
+        // Validate unique ID
+        if (id && tickets.some(ticket => ticket.id === id)) errors.push("error-id-duplicate");
+
+        // Display all errors at once
+        if (errors.length > 0) {
+            errors.forEach(errorId => {
+                const el = document.getElementById(errorId);
+                if (el) el.style.display = "block";
+            });
+        } else {
+            // Create new ticket
+            let newPurchase = { name, surname, age, id };
+            tickets.push(newPurchase);
+
+            // Show success message
+            const successEl = document.getElementById("success-message");
+            if (successEl) successEl.style.display = "block";
+
+            // Clean form and update ticket list
+            cleanForm();
+            showTickets();
         }
-
-        if (!surname || surname === "") {
-            document.getElementById("error-surname-required").style.display = "block";
-            console.log("error-surname-required");
-            return;
-        }
-
-        if (!age || age === "") {
-            document.getElementById("error-age-required").style.display = "block";
-            console.log("error-age-required");
-            return;
-        }
-
-        if (!id || id === "") {
-            document.getElementById("error-id-required").style.display = "block";
-            console.log("error-id-required");
-            return;
-        }
-
-        let newPurchase = {
-            name: name,
-            surname: surname,
-            age: age,
-            id: id,
-        };
-
-        tickets.push(newPurchase);
-        showTickets();
     }
 
+    // Reset form and hide all error messages
+    function cleanForm() {
+        const form = document.getElementById("purchase-form");
+
+        // Clear all inputs
+        form.reset();
+
+        // Hide all errors
+        ERROR_ID.forEach(id => {
+            const el = document.getElementById(id);
+            if (el) el.style.display = "none";
+        });
+    }
+
+    // Show purchased tickets
     function showTickets() {
         const ticketsContainer = document.getElementById("tickets-list-container");
         const ul = ticketsContainer.querySelector("ul");
@@ -132,6 +176,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         ul.innerHTML = html;
     }
+
+    // Add new art style
     function addToStyle(event) {
         event.preventDefault();
 
@@ -148,7 +194,7 @@ document.addEventListener('DOMContentLoaded', () => {
         showStyle();
     }
 
-
+    // Display all art styles
     function showStyle() {
         let styleListContainer = document.getElementById("style-list-container");
         let allStyle = styleListContainer.querySelector("ul");;
@@ -163,6 +209,7 @@ document.addEventListener('DOMContentLoaded', () => {
         allStyle.innerHTML = aux;
     }
 
+    // Initialize display and attach events
     showStyle();
     showTickets();
     listenToEvents();

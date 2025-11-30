@@ -335,9 +335,16 @@ main section h2 {
 #error-name-required,
 #error-surname-required,
 #error-age-required,
-#error-id-required {
+#error-id-required,
+#error-name-invalid,
+#error-surname-invalid,
+#error-age-invalid,
+#error-id-invalid,
+#error-id-duplicate {
     color: red;
     display: none;
+    font-size: 0.85em;
+    margin-top: 3px;
 }
 
 .tickets-section {
@@ -366,6 +373,15 @@ main section h2 {
 
 .tickets-list-container li:last-child {
     border-bottom: none;
+}
+
+#success-message {
+    display: none; 
+    color: green;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 1em;
 }
 
 /*Tablet*/
