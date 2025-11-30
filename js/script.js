@@ -76,6 +76,30 @@ document.addEventListener('DOMContentLoaded', () => {
       id: "11223344",
     }
   ]
+  // LocalStorage key and helpers
+  const STORAGE_KEY = 'ws_tickets_v1';
+
+  function saveTickets() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(tickets));
+    } catch (e) {
+      console.error('Failed to save tickets to localStorage', e);
+    }
+  }
+
+  function loadTickets() {
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) {
+        const parsed = JSON.parse(raw);
+        if (Array.isArray(parsed)) {
+          tickets = parsed;
+        }
+      }
+    } catch (e) {
+      console.error('Failed to load tickets from localStorage', e);
+    }
+  }
   // Attach event listeners to forms
   function listenToEvents() {
     let addStyleForm = document.getElementById("add-style-form");
@@ -83,6 +107,33 @@ document.addEventListener('DOMContentLoaded', () => {
     addStyleForm.addEventListener("submit", addToStyle);
     purchaseForm.addEventListener("submit", purchase);
 
+  }
+
+  function validateTicket(name, surname, age, id, isUpdate = false) {
+    const errors = [];
+
+    // Check empty fields
+    if (!name) errors.push("error-name-required");
+    if (!surname) errors.push("error-surname-required");
+    if (!age) errors.push("error-age-required");
+    if (!id) errors.push("error-id-required");
+
+    // Name and surname letters only
+    const nameRegex = /^[A-Za-zÀ-ÿ\s]+$/;
+    if (name && !nameRegex.test(name)) errors.push("error-name-invalid");
+    if (surname && !nameRegex.test(surname)) errors.push("error-surname-invalid");
+
+    // Age positive number
+    const ageNum = parseInt(age);
+    if (age && (isNaN(ageNum) || ageNum <= 0)) errors.push("error-age-invalid");
+
+    // ID numeric
+    if (id && !/^\d+$/.test(id)) errors.push("error-id-invalid");
+
+    // Unique ID, only check if adding a new ticket
+    if (!isUpdate && id && tickets.some(ticket => ticket.id === id)) errors.push("error-id-duplicate");
+
+    return errors;
   }
 
   // Handle ticket purchase
@@ -105,29 +156,7 @@ document.addEventListener('DOMContentLoaded', () => {
     let age = event.target["user-age"].value.trim();
     let id = event.target["user-id"].value.trim();
 
-    // Array to collect errors
-    const errors = [];
-
-    // Validate empty fields
-    if (!name) errors.push("error-name-required");
-    if (!surname) errors.push("error-surname-required");
-    if (!age) errors.push("error-age-required");
-    if (!id) errors.push("error-id-required");
-
-    // Validate name and surname contain only letters
-    const nameRegex = /^[A-Za-zÀ-ÿ\s]+$/;
-    if (name && !nameRegex.test(name)) errors.push("error-name-invalid");
-    if (surname && !nameRegex.test(surname)) errors.push("error-surname-invalid");
-
-    // Validate age is a positive number
-    age = parseInt(age);
-    if (age && (isNaN(age) || age <= 0)) errors.push("error-age-invalid");
-
-    // Validate ID is numeric
-    if (id && !/^\d+$/.test(id)) errors.push("error-id-invalid");
-
-    // Validate unique ID
-    if (id && tickets.some(ticket => ticket.id === id)) errors.push("error-id-duplicate");
+    const errors = validateTicket(name, surname, age, id);
 
     // Display all errors at once
     if (errors.length > 0) {
@@ -139,6 +168,7 @@ document.addEventListener('DOMContentLoaded', () => {
       // Create new ticket
       let newPurchase = { name, surname, age, id };
       tickets.push(newPurchase);
+      saveTickets();
 
       // Show success message
       const successEl = document.getElementById("success-message");
@@ -150,30 +180,40 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   }
 
-  // Delete a ticket
+  // Delete a ticket by ID
   function deleteTicket(id) {
     tickets = tickets.filter(ticket => ticket.id !== id);
-    showTickets();
+    saveTickets();
+    showTickets(); // Re-render list
   }
 
-  // Populate form for updating a ticket
-  function editTicket(id) {
-    const ticket = tickets.find(ticket => ticket.id === id);
-    if (!ticket) return;
+  // Update a ticket
+  function updateTicket(ticket, newName, newSurname, newAge) {
+    const errors = validateTicket(newName, newSurname, newAge, ticket.id, true);
 
-    // Fill the form with ticket info
-    document.getElementById("user-name").value = ticket.name;
-    document.getElementById("user-surname").value = ticket.surname;
-    document.getElementById("user-age").value = ticket.age;
-    document.getElementById("user-id").value = ticket.id;
+    const panel = document.querySelector(`.ticket-item[data-id='${ticket.id}'] .edit-panel`);
+    // Remove previous error if any
+    const prevError = panel.querySelector(".edit-error");
+    if (prevError) prevError.remove();
 
-    // Change submit button text to "Update Ticket"
-    const submitButton = document.querySelector("#purchase-form input[type='submit']");
-    submitButton.value = "Update Ticket";
+    if (errors.length > 0) {
+      const errorSpan = document.createElement("span");
+      errorSpan.classList.add("edit-error");
+      errorSpan.style.color = "red";
+      errorSpan.textContent = "Incorrect data";
+      panel.appendChild(errorSpan);
+    } else {
+      // Update ticket values
+      ticket.name = newName;
+      ticket.surname = newSurname;
+      ticket.age = parseInt(newAge);
 
-    // Remove old ticket so it can be updated on submit
-    tickets = tickets.filter(t => t.id !== id);
+      // Re-render tickets
+      saveTickets();
+      showTickets();
+    }
   }
+
 
   // Reset form and hide all error messages
   function cleanForm() {
@@ -199,12 +239,13 @@ document.addEventListener('DOMContentLoaded', () => {
     tickets.forEach(ticket => {
       const li = document.createElement("li");
       li.classList.add("ticket-item");
+      li.dataset.id = ticket.id; 
 
       li.innerHTML = `
             <span>${ticket.name} ${ticket.surname}, Age: ${ticket.age}, ID: ${ticket.id}</span>
             <button class="edit-btn">Edit</button>
             <button class="delete-btn">Delete</button>
-            <div class="edit-panel" style="display: none;">
+            <div class="edit-panel" style="display: none; margin-top: 5px;">
                 <input type="text" class="edit-name" value="${ticket.name}" placeholder="Name">
                 <input type="text" class="edit-surname" value="${ticket.surname}" placeholder="Surname">
                 <input type="number" class="edit-age" value="${ticket.age}" placeholder="Age">
@@ -215,7 +256,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
       ul.appendChild(li);
 
-      // Buttons functionality
       const editBtn = li.querySelector(".edit-btn");
       const deleteBtn = li.querySelector(".delete-btn");
       const editPanel = li.querySelector(".edit-panel");
@@ -227,30 +267,26 @@ document.addEventListener('DOMContentLoaded', () => {
         editPanel.style.display = "block";
       });
 
-      // Hide edit panel
+      // Cancel edit
       cancelBtn.addEventListener("click", () => {
         editPanel.style.display = "none";
+        const prevError = editPanel.querySelector(".edit-error");
+        if (prevError) prevError.remove();
       });
 
-      // Update ticket data
+      // Update ticket
       updateBtn.addEventListener("click", () => {
         const newName = li.querySelector(".edit-name").value.trim();
         const newSurname = li.querySelector(".edit-surname").value.trim();
-        const newAge = parseInt(li.querySelector(".edit-age").value.trim());
+        const newAge = li.querySelector(".edit-age").value.trim();
 
-        if (newName && newSurname && newAge > 0) {
-          ticket.name = newName;
-          ticket.surname = newSurname;
-          ticket.age = newAge;
-          showTickets(); 
-        } else {
-          alert("Please enter valid values!");
-        }
+        updateTicket(ticket, newName, newSurname, newAge);
       });
 
       // Delete ticket
       deleteBtn.addEventListener("click", () => {
         tickets = tickets.filter(t => t.id !== ticket.id);
+        saveTickets();
         showTickets();
       });
     });
@@ -292,6 +328,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Initialize display and attach events
   showStyle();
+  // Load saved tickets (if any) then render
+  loadTickets();
   showTickets();
   listenToEvents();
 });
