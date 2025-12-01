@@ -136,50 +136,6 @@ document.addEventListener('DOMContentLoaded', () => {
     return errors;
   }
 
-  // Handle ticket purchase
-  function purchase(event) {
-    event.preventDefault();
-
-    // Hide all error messages
-    ERROR_ID.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.display = "none";
-    });
-
-    // Hide success message
-    const successEl = document.getElementById("success-message");
-    if (successEl) successEl.style.display = "none";
-
-    // Get form values
-    let name = event.target["user-name"].value.trim();
-    let surname = event.target["user-surname"].value.trim();
-    let age = event.target["user-age"].value.trim();
-    let id = event.target["user-id"].value.trim();
-
-    const errors = validateTicket(name, surname, age, id);
-
-    // Display all errors at once
-    if (errors.length > 0) {
-      errors.forEach(errorId => {
-        const el = document.getElementById(errorId);
-        if (el) el.style.display = "block";
-      });
-    } else {
-      // Create new ticket
-      let newPurchase = { name, surname, age, id };
-      tickets.push(newPurchase);
-      saveTickets();
-
-      // Show success message
-      const successEl = document.getElementById("success-message");
-      if (successEl) successEl.style.display = "block";
-
-      // Clean form and update ticket list
-      cleanForm();
-      showTickets();
-    }
-  }
-
   // Delete a ticket by ID
   function deleteTicket(id) {
     tickets = tickets.filter(ticket => ticket.id !== id);
@@ -212,21 +168,6 @@ document.addEventListener('DOMContentLoaded', () => {
       saveTickets();
       showTickets();
     }
-  }
-
-
-  // Reset form and hide all error messages
-  function cleanForm() {
-    const form = document.getElementById("purchase-form");
-
-    // Clear all inputs
-    form.reset();
-
-    // Hide all errors
-    ERROR_ID.forEach(id => {
-      const el = document.getElementById(id);
-      if (el) el.style.display = "none";
-    });
   }
 
   // Show purchased tickets

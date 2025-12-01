@@ -234,41 +234,9 @@
       <h2 class="section-title">Tickets</h2>
       <p class="ticket-price">Price: 20€</p>
 
-      <form id="purchase-form" class="purchase-form">
-        <div class="user-information">
-          <label for="user-name">Name:</label>
-          <input type="text" id="user-name" name="user-name">
-          <span id="error-name-required">* error: name required</span>
-          <span id="error-name-invalid">* error: name must contain only letters</span>
-        </div>
-
-        <div class="user-information">
-          <label for="user-surname">Surname:</label>
-          <input type="text" id="user-surname" name="user-surname">
-          <span id="error-surname-required">* error: surname required</span>
-          <span id="error-surname-invalid">* error: surname must contain only letters</span>
-        </div>
-
-        <div class="user-information">
-          <label for="user-age">Age:</label>
-          <input type="number" id="user-age" name="user-age">
-          <span id="error-age-required">* error: age required</span>
-          <span id="error-age-invalid">* error: age must be a positive number</span>
-        </div>
-
-        <div class="user-information">
-          <label for="user-id">ID:</label>
-          <input type="text" id="user-id" name="user-id">
-          <span id="error-id-required">* error: ID required</span>
-          <span id="error-id-invalid">* error: ID must contain only numbers</span>
-          <span id="error-id-duplicate">* error: ID already used</span>
-        </div>
-
-        <input type="submit" value="Purchase Ticket" class="submit-button">
-      </form>
-
-      <!-- Success message -->
-      <p id="success-message">Purchase completed successfully!</p>
+      <div style="display:flex;gap:8px;justify-content:center;margin-bottom:12px;">
+        <a class="submit-button" href="views/tickets/create.html" style="text-decoration:none;">Purchase ticket</a>
+      </div>
 
       <div id="tickets-list-container" class="tickets-list-container">
         <h3>Purchased Tickets</h3>
