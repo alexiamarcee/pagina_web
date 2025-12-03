@@ -99,6 +99,13 @@ main section h2 {
   padding: 15px 5%;
   text-align: center;
   border-bottom: 3px cornflowerblue;
+  transition: all 0.3s ease;
+}
+
+.main-header.scrolled {
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(10px);
 }
 
 .header-logo {
@@ -384,69 +391,179 @@ main section h2 {
 }
 
 .ticket-item {
-    margin-bottom: 10px;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    position: relative;
+  margin-bottom: 10px;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  position: relative;
 }
 
 .ticket-item button {
-    margin-left: 5px;
-    padding: 4px 8px;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
+  margin-left: 5px;
+  padding: 4px 8px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.purchase-ticket {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-bottom: 12px;
+  text-decoration: none;
 }
 
 .edit-btn {
-    background-color: cornflowerblue;
-    color: white;
+  background-color: cornflowerblue;
+  color: white;
 }
 
 .delete-btn {
-    background-color: red;
-    color: white;
+  background-color: red;
+  color: white;
 }
 
 .edit-panel {
-    margin-top: 10px;
-    padding: 10px;
-    background-color: white;
-    border: 1px dashed gray;
-    border-radius: 6px;
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
+  margin-top: 10px;
+  padding: 10px;
+  background-color: white;
+  border: 1px dashed gray;
+  border-radius: 6px;
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .edit-panel input {
-    padding: 5px;
-    border: 1px solid gray;
-    border-radius: 4px;
-    width: 120px;
+  padding: 5px;
+  border: 1px solid gray;
+  border-radius: 4px;
+  width: 120px;
 }
 
 .update-btn {
-    background-color: green;
-    color: white;
-    padding: 5px 10px;
+  background-color: green;
+  color: white;
+  padding: 5px 10px;
 }
 
 .cancel-btn {
-    background-color: gray;
-    color: white;
-    padding: 5px 10px;
+  background-color: gray;
+  color: white;
+  padding: 5px 10px;
 }
 
 .ticket-item .edit-error {
-    margin-top: 5px;
-    color: red;
-    font-size: 0.9rem;
-    font-weight: bold;
+  margin-top: 5px;
+  color: red;
+  font-size: 0.9rem;
+  font-weight: bold;
 }
 
+.scroll-reveal {
+  opacity: 0;
+  position: relative;
+  transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
 
+.scroll-reveal.active {
+  opacity: 1;
+}
+
+.fade-in-up {
+  transform: translateY(60px);
+}
+
+.fade-in-up.active {
+  transform: translateY(0);
+}
+
+.fade-in-scale {
+  transform: scale(0.85);
+  filter: blur(3px);
+}
+
+.fade-in-scale.active {
+  transform: scale(1);
+  filter: blur(0);
+}
+
+.painting-item:nth-child(1) {
+  transition-delay: 0.1s;
+}
+
+.painting-item:nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.painting-item:nth-child(3) {
+  transition-delay: 0.3s;
+}
+
+.painting-item:nth-child(4) {
+  transition-delay: 0.15s;
+}
+
+.painting-item:nth-child(5) {
+  transition-delay: 0.25s;
+}
+
+.painting-item:nth-child(6) {
+  transition-delay: 0.35s;
+}
+
+.painting-item:nth-child(7) {
+  transition-delay: 0.2s;
+}
+
+.painting-item:nth-child(8) {
+  transition-delay: 0.3s;
+}
+
+.painting-item:nth-child(9) {
+  transition-delay: 0.4s;
+}
+
+.painting-item:nth-child(10) {
+  transition-delay: 0.25s;
+}
+
+.painting-item:nth-child(11) {
+  transition-delay: 0.35s;
+}
+
+.slide-in-left {
+  transform: translateX(-80px);
+}
+
+.slide-in-left.active {
+  transform: translateX(0);
+}
+
+.fade-in-right {
+  transform: translateX(80px);
+}
+
+.fade-in-right.active {
+  transform: translateX(0);
+}
+
+.zoom-in {
+  transform: scale(0.7);
+}
+
+.zoom-in.active {
+  transform: scale(1);
+}
+
+.section-title.scroll-reveal {
+  transform: translateY(-30px);
+}
+
+.section-title.scroll-reveal.active {
+  transform: translateY(0);
+}
 
 /*Tablet*/
 @media (min-width: 601px) {
@@ -455,6 +572,10 @@ main section h2 {
     justify-content: space-between;
     align-items: center;
     padding: 15px 30px;
+  }
+
+  .main-header.scrolled {
+    padding: 10px 15px;
   }
 
   .header-logo {
@@ -493,6 +614,56 @@ main section h2 {
     max-width: 60%;
     margin: 0;
   }
+
+  .scroll-reveal {
+    transition-duration: 0.6s;
+  }
+
+  .fade-in-up {
+    transform: translateY(40px);
+  }
+
+  .slide-in-left {
+    transform: translateX(-50px);
+  }
+
+  .fade-in-right {
+    transform: translateX(50px);
+  }
+
+  .fade-in-scale {
+    transform: scale(0.9);
+    filter: blur(2px);
+  }
+
+  .painting-item:nth-child(n) {
+    transition-delay: 0.1s !important;
+  }
+}
+
+#hero-title {
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-15px);
+  }
+}
+
+.painting-image {
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.painting-image:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
 }
 
 /*Desktop*/
@@ -546,8 +717,13 @@ main section h2 {
 
 /*Mobile*/
 @media (max-width: 600px) {
+  .main-header.scrolled {
+    padding: 8px 10px;
+  }
+
   #hero-title {
     font-size: 4em;
+    animation: float 4s ease-in-out infinite;
   }
 
   .site-title {
@@ -564,6 +740,10 @@ main section h2 {
     height: 180px;
   }
 
+  .painting-image:hover {
+    transform: translateY(-4px) scale(1.01);
+  }
+
   .content-section {
     padding: 15px 5%;
   }
@@ -571,5 +751,17 @@ main section h2 {
   .main-footer {
     font-size: 0.7em;
     padding: 15px;
+  }
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0px);
+    }
+
+    50% {
+      transform: translateY(-8px);
+    }
   }
 }

@@ -180,7 +180,7 @@ document.addEventListener('DOMContentLoaded', () => {
     tickets.forEach(ticket => {
       const li = document.createElement("li");
       li.classList.add("ticket-item");
-      li.dataset.id = ticket.id; 
+      li.dataset.id = ticket.id;
 
       li.innerHTML = `
             <span>${ticket.name} ${ticket.surname}, Age: ${ticket.age}, ID: ${ticket.id}</span>
@@ -273,4 +273,113 @@ document.addEventListener('DOMContentLoaded', () => {
   loadTickets();
   showTickets();
   listenToEvents();
+});
+
+document.addEventListener('DOMContentLoaded', () => {
+  function revealOnScroll() {
+    const REVEALS = document.querySelectorAll('.scroll-reveal');
+
+    const windowHeight = window.innerHeight;
+    let triggerPoint = 150;
+
+    if (window.innerWidth <= 768) {
+      triggerPoint = 100;
+    }
+    if (window.innerWidth <= 480) {
+      triggerPoint = 50;
+    }
+
+    REVEALS.forEach((element) => {
+      const elementTop = element.getBoundingClientRect().top;
+      const elementBottom = element.getBoundingClientRect().bottom;
+
+      const isVisible = elementTop < windowHeight - triggerPoint;
+
+      const isAbove = elementBottom < 0;
+
+      if (isVisible && !isAbove) {
+        element.classList.add('active');
+      } else {
+      }
+    });
+  }
+
+  function throttle(func, wait) {
+    let timeout;
+    let lastRan;
+
+    return function executedFunction(...args) {
+      const context = this;
+
+      if (!lastRan) {
+        func.apply(context, args);
+        lastRan = Date.now();
+      } else {
+        clearTimeout(timeout);
+        timeout = setTimeout(function () {
+          if ((Date.now() - lastRan) >= wait) {
+            func.apply(context, args);
+            lastRan = Date.now();
+          }
+        }, wait - (Date.now() - lastRan));
+      }
+    };
+  }
+
+  const optimizedReveal = throttle(revealOnScroll, 100);
+
+  window.addEventListener('scroll', optimizedReveal, { passive: true });
+  revealOnScroll();
+
+  if ('IntersectionObserver' in window) {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    if (window.innerWidth <= 768) {
+      observerOptions.rootMargin = '0px 0px -50px 0px';
+    }
+    if (window.innerWidth <= 480) {
+      observerOptions.rootMargin = '0px 0px -30px 0px';
+    }
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        } else {
+        }
+      });
+    }, observerOptions);
+
+    document.querySelectorAll('.scroll-reveal').forEach(element => {
+      observer.observe(element);
+    });
+  }
+
+  let resizeTimeout;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(() => {
+      revealOnScroll();
+    }, 250);
+  }, { passive: true });
+
+  const mainHeader = document.querySelector('.main-header');
+  let lastScroll = 0;
+
+  function headerAnimation() {
+    const currentScroll = window.pageYOffset;
+
+    if (currentScroll > 100) {
+      mainHeader?.classList.add('scrolled');
+    } else {
+      mainHeader?.classList.remove('scrolled');
+    }
+
+    lastScroll = currentScroll;
+  }
+
+  window.addEventListener('scroll', throttle(headerAnimation, 100), { passive: true });
 });
