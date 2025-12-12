@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>White Space - Chat</title>
+
+  <link rel="stylesheet" href="css/style-chat.css">
+  <link rel="stylesheet" href="css/effects.css">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <header class="main-header">
+    <img src="img/logo.png" alt="logo" class="header-logo">
+    <h1 class="site-title">White Space - Chat</h1>
+
+    <nav class="main-nav">
+      <a href="index.html#history-section">History</a>
+      <a href="index.html#gallery-section">Gallery</a>
+      <a href="index.html#schedule-section">Schedule</a>
+      <a href="index.html#location-section">Location</a>
+      <a href="index.html#tickets-section">Tickets</a>
+      <a href="chatbot.html" class="active">Chat</a>
+    </nav>
+  </header>
+
+  <div class="container">
+    <div class="send-message">
+      <form id="form-send-message">
+        <input type="text" name="message" placeholder="your message">
+        <input type="text" name="sent-by" placeholder="your name">
+        <button type="submit">Send</button>
+      </form>
+    </div>
+    <div id="message-list"></div>
+  </div>
+
+  <footer class="main-footer">
+    <p>&copy; Copyright 2025. Museo Nacional White Space. Parque San Telmo s/n. Las Palmas de Gran Canaria. 35002.
+      Tel +34 691 23 44 66. All rights reserved.</p>
+    <p id="contact-info" class="contact-info">
+      Contact: <a href="mailto:info@whitespace.com">info@whitespace.com</a>
+    </p>
+  </footer>
+
+  <script type="module" src="js/firebase-crud.js"></script>
+  <script src="js/script.js"></script>
+</body>
+
+</html>

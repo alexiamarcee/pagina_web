@@ -1,5 +1,5 @@
 /*Hover*/
-/*Enlaces de navegación*/
+/*Navigation links*/
 .main-nav a {
   position: relative;
   padding: 8px 16px;
@@ -28,7 +28,7 @@
   color: red;
 }
 
-/*Títulos de las obras*/
+/*Paintings titles*/
 .painting-title {
   transition: all 0.3s ease;
   cursor: pointer;
@@ -40,7 +40,7 @@
   text-shadow: 2px 2px 8px rgba(255, 107, 107, 0.3);
 }
 
-/*Filas de la tabla*/
+/*Schedule lines*/
 .schedule-section tbody tr {
   transition: all 0.3s ease;
   cursor: pointer;
@@ -52,7 +52,7 @@
   box-shadow: -5px 0 15px rgba(255, 107, 107, 0.2);
 }
 
-/*Logo del header*/
+/*Header logo*/
 .header-logo {
   transition: all 0.5s cubic-bezier(0.68, -0.55, 0.265, 1.55);
   filter: grayscale(0);
@@ -63,8 +63,8 @@
   filter: grayscale(0) drop-shadow(0 0 15px rgba(255, 107, 107, 0.5));
 }
 
-/*Animaciones*/
-/*Precios*/
+/*Animations*/
+/*Prices*/
 .painting-info p:last-child {
   animation: price-pulse 2s ease-in-out infinite;
   font-weight: bold;
@@ -84,7 +84,7 @@
   }
 }
 
-/*Elementos de la lista*/
+/*Elements of the list*/
 #style-list-container ul li,
 #tickets-list-container ul li {
   animation: gentle-swing 3s ease-in-out infinite;
@@ -112,7 +112,7 @@
   }
 }
 
-/*Arcoíris*/
+/*Rainbow*/
 .contact-info a {
   background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #ff6b6b);
   background-size: 200% auto;
@@ -161,7 +161,7 @@
   }
 }
 
-/*Gradientes*/
+/*Gradients*/
 .hero-section {
   position: relative;
 }
@@ -204,7 +204,7 @@
   }
 }
 
-/*Gradientes en títulos*/
+/*Title's gradient*/
 .section-title {
   background: linear-gradient(120deg, #ff6b6b, #feca57, #48dbfb);
   -webkit-background-clip: text;
@@ -224,7 +224,7 @@
   }
 }
 
-/*Gradiente background*/
+/*Background's gradient*/
 .history-section {
   background: radial-gradient(circle at top left,
       rgba(255, 107, 107, 0.05),
@@ -250,7 +250,7 @@
       rgba(255, 107, 107, 0.05));
 }
 
-/*Gradiente en pinturas*/
+/*Painting's gradient*/
 .painting-item {
   position: relative;
   border: 2px solid transparent;
@@ -276,7 +276,7 @@
   opacity: 1;
 }
 
-/*Gradiente en el footer*/
+/*Footer's gradient*/
 .main-footer {
   background: linear-gradient(to right,
       rgba(255, 107, 107, 0.1),
@@ -298,7 +298,7 @@ textarea:focus {
   transition: all 0.3s ease;
 }
 
-/*Móvil*/
+/*Mobile*/
 @media (max-width: 700px) {
   .submit-button::before {
     transition: width 0.4s ease, height 0.4s ease;

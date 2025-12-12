@@ -18,13 +18,13 @@ document.addEventListener('DOMContentLoaded', () => {
       const item = image.closest('.painting-item');
       if (!item) return;
 
-      const infoContainer = item.querySelector('.painting-info');
+      const INFOCONTAINER = item.querySelector('.painting-info');
 
-      if (infoContainer) {
-        if (infoContainer.style.display === 'none' || infoContainer.style.display === '') {
-          infoContainer.style.display = 'block';
+      if (INFOCONTAINER) {
+        if (INFOCONTAINER.style.display === 'none' || INFOCONTAINER.style.display === '') {
+          INFOCONTAINER.style.display = 'block';
         } else {
-          infoContainer.style.display = 'none';
+          INFOCONTAINER.style.display = 'none';
         }
       }
     });

@@ -12,6 +12,8 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
   font-family: var(--font-body);
   color: black;
   line-height: 1.6;
@@ -318,6 +320,13 @@ main section h2 {
   outline-offset: 2px;
 }
 
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
 .main-footer {
   background-color: cornflowerblue;
   color: black;
@@ -326,11 +335,13 @@ main section h2 {
   margin-top: 40px;
   border-top: 3px cornflowerblue;
   font-size: 0.75em;
+  margin-top: auto;
 }
 
 .main-footer a {
   color: white;
   font-weight: 500;
+  margin-top: auto;
 }
 
 .contact-info {
